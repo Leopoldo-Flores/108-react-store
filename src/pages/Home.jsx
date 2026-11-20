@@ -1,4 +1,4 @@
-// the Home page ( URL "/" )
+// NEW (Class 1): the Home page ( URL "/" )
 function Home() {
     return (
         // text-center = center all the text inside

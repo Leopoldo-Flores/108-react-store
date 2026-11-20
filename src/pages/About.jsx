@@ -1,4 +1,4 @@
-// the About page ( URL "/about" )
+// NEW (Class 1): the About page ( URL "/about" )
 function About() {
     return (
         // text-center = center all the text inside

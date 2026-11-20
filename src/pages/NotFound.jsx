@@ -1,4 +1,4 @@
-// the 404 page. App.jsx shows it for any URL that has no Route (path='*')
+// NEW (Class 1): the 404 page. App.jsx shows it for any URL that has no Route (path='*')
 function NotFound() {
     return (
         // text-center = center the text | py-5 = padding top + bottom size 5 (48px)

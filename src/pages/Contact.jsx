@@ -1,4 +1,4 @@
-// the Contact page ( URL "/contact" )
+// NEW (Class 1): the Contact page ( URL "/contact" )
 function Contact() {
     return (
         // Bootstrap grid:

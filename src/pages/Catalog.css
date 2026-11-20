@@ -1,10 +1,7 @@
-/* display: flex           = put the product cards side by side
-   flex-wrap: wrap         = when there's no more room, continue on the next line
-   gap: 1.5rem             = 24px of space between cards
-   justify-content: center = center the cards in the row */
 .catalog {
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
     justify-content: center;
-}
+    padding: 2rem;
+} 

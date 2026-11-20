@@ -1,32 +1,31 @@
-// The product "database" for now. Later it can come from a server.
-// prices are NUMBERS (20), not strings ("20"), so we can do math and .toFixed(2)
+
+
 const catalog = [
     {
-        "title": "Chocolatte",
-        "category": "Candy",
-        "price": 20,
-        "image": "choco.png", // file name inside public/images
+        "title":"Chocolatte",
+        "category":"Candy",
+        "price":20, // CHANGED (Class 1): price is a NUMBER now (no quotes), so we can do math and use .toFixed(2)
+        "image":"choco.png",
         "_id": "1" // This should be unique
     },
-    {
-        "title": "Hoodie",
-        "category": "merch",
-        "price": 500,
-        "image": "hoodie.png",
+      {
+        "title":"Hoodie",
+        "category":"merch",
+        "price":500, // CHANGED (Class 1): number, no quotes
+        "image":"hoodie.png",
         "_id": "2"
     },
-    {
-        "title": "Coffee",
-        "category": "merch",
-        "price": 20,
-        "image": "coffe.png",
+      {
+        "title":"Coffee",
+        "category":"merch",
+        "price":20, // CHANGED (Class 1): number, no quotes
+        "image":"coffe.png",
         "_id": "3"
     },
 ];
 
 class DataService {
-    // returns the whole product list
-    getProducts() {
+    getProducts(){
         return catalog;
     }
 }

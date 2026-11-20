@@ -2,58 +2,42 @@ import "./Product.css";
 import QuantityPicker from "./QuantityPicker";
 import { useState } from "react";
 
-function Product(props) {
-    // qty = how many of this product the user picked (starts at 1)
-    const [qty, setQty] = useState(1);
+function Product(props){
+    const [qty, setQty] = useState (1);
 
-    // Calculate the Total Price using the quantity we get from the QuantityPicker
-    function calculateTotal() {
+    function calculateTotal(){
         let total = props.data.price * qty;
-        // .toFixed(2) always shows 2 decimals (20 -> "20.00")
+        // CHANGED (Class 1): .toFixed(2) always shows 2 decimals (20 -> "20.00")
         return total.toFixed(2);
     }
 
-    // QuantityPicker calls this every time + or - is clicked
-    function handleQtyChange(quantity) {
+    function handleQtyChange(quantity){
+        console.log(quantity);
         setQty(quantity);
     }
 
-    // Send a COPY of the product, plus the chosen quantity, up to Catalog
-    function handleAdd() {
-        props.onAdd({ ...props.data, quantity: qty });
+    function handleAdd(){
+        props.onAdd({ ...props.data, quantity: qty})
     }
 
-    // Bootstrap classes on the outer <div>:
-    //   card    = Bootstrap card: white box with a light border and rounded corners
-    //   product = our own class (Product.css) that sets the card's width
-    return (
-        <div className="card product">
-            {/* card-img-top = image that fits the top of the card */}
-            <img src={"/images/" + props.data.image} className="card-img-top" alt={props.data.title} />
-
-            {/* card-body   = the padded area inside the card
-                text-center = center the text */}
-            <div className="card-body text-center">
-                {/* card-title = card heading spacing */}
-                <h5 className="card-title">{props.data.title}</h5>
-
-                {/* text-secondary = gray text | mb-1 = margin-bottom size 1 (0.25rem = 4px) */}
-                <p className="text-secondary mb-1">{props.data.category}</p>
-                <p className="mb-1">Price: ${props.data.price.toFixed(2)}</p>
-
-                {/* fw-bold = font-weight bold */}
-                <p className="fw-bold">Total: ${calculateTotal()}</p>
-
-                <QuantityPicker onChange={handleQtyChange} />
-
-                {/* btn      = Bootstrap button base style
-                    btn-dark = dark/black button
-                    w-100    = width 100% (fills the card)
-                    mt-3     = margin-top size 3 (1rem = 16px) */}
-                <button className="btn btn-dark w-100 mt-3" onClick={handleAdd}>Add to cart</button>
-            </div>
+    // Calculate the Total Price using the data that we get from the QP
+    return(
+        // CHANGED (Class 1): Bootstrap classes added
+        //   card        = Bootstrap card: white box, light border, rounded corners
+        //   text-center = center everything inside
+        //   product     = our own class (Product.css)
+        <div className="product card text-center">
+            {/* CHANGED (Class 1): alt = text shown if the image can't load (also read by screen readers) */}
+            <img src={"/images/" + props.data.image} alt={props.data.title}></img>
+            <h5>{props.data.title}</h5>
+            {/* CHANGED (Class 1): labels added so the user knows which number is which.
+                text-secondary = gray text | fw-bold = bold */}
+            <label className="text-secondary">Price: ${props.data.price.toFixed(2)} </label>
+            <label className="fw-bold">Total: ${calculateTotal()} </label>
+            <QuantityPicker onChange={handleQtyChange}/>
+            {/* CHANGED (Class 1): btn = Bootstrap button | btn-dark = dark/black button */}
+            <button className="btn btn-dark" onClick={handleAdd}>Add</button>
         </div>
     );
 }
-
 export default Product;

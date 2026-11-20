@@ -2,33 +2,36 @@ import "./QuantityPicker.css";
 import { useState } from "react";
 
 function QuantityPicker(props) {
-    //    name      function to change it      initial value
-    const [quantity, setQuantity] = useState(1);
 
-    function handleDecrease() {
+    const [quantity, setQuantity] = useState (1);
+    //    const quantity = 1;
+    //     name       function                 initial value
+    // let [varName, funcName] = useState();
+    function handleDecrease(){
         let prevValue = quantity - 1;
+        // CHANGED (Class 1): was quantity>0, which let the quantity go down to 0.
+        // Now it only goes down while it's above 1.
+        if(quantity>1){
         setQuantity(prevValue);
-        props.onChange(prevValue); // Notify the parent (Product)
+        props.onChange(prevValue);//Notify the parent
+        }
     }
-
-    function handleIncrease() {
-        let nextVal = quantity + 1;
+    function handleIncrease(){
+        let nextVal = quantity+1;
+        // quantity = 1; 
         setQuantity(nextVal);
-        props.onChange(nextVal); // Notify the parent (Product)
+        props.onChange(nextVal);//Notify the parent
     }
 
-    return (
+    return(
         <div className="quantity-picker">
-            {/* Bootstrap buttons
-                btn btn-dark = dark Bootstrap button
-                btn-sm       = small button
-                disabled={quantity === 1} = grayed out at 1, so the quantity never reaches 0 */}
-            <button className="btn btn-sm btn-dark" onClick={handleDecrease} disabled={quantity === 1}>-</button>
-
-            {/* mx-2 = margin left + right size 2 (0.5rem = 8px): space between the number and the buttons */}
-            <label className="mx-2">{quantity}</label>
-
-            <button className="btn btn-sm btn-dark" onClick={handleIncrease}>+</button>
+            {/* CHANGED (Class 1): Bootstrap classes added (your own classes are still there)
+                btn btn-dark = dark Bootstrap button | btn-sm = small button
+                disabled={quantity === 1} = the minus button is grayed out at 1 */}
+            <button className="btn-minus btn btn-sm btn-dark" onClick={handleDecrease} disabled={quantity === 1}>-</button>
+            {/* CHANGED (Class 1): mx-2 = margin left + right 8px (space around the number) */}
+            <label className="label-qty mx-2">{quantity}</label>
+            <button className="btn-plus btn btn-sm btn-dark" onClick={handleIncrease}>+</button>
         </div>
     );
 }

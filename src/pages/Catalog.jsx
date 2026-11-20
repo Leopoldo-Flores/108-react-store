@@ -1,37 +1,32 @@
 import "./Catalog.css";
 import Product from "../components/Product";
-import { useEffect, useState } from "react";
-import DataService from "../Services/dataService";
+import { useEffect , useState } from "react";
+import DataService from "../dataServices/dataService";
 
-function Catalog() {
-    const [products, setProducts] = useState([]); // the list of products to show
-    const [cart, setCart] = useState([]);         // the items added to the cart
-
-    useEffect(() => {
-        // Load the data from the dataService
+function Catalog(){
+    const [products, setProducts] = useState([]);
+    const [cart, setCart] = useState([]);
+    // const products = [];
+    useEffect(()=> {
+        //Load the data from the dataService
         let service = new DataService();
         let data = service.getProducts();
         setProducts(data);
-    }, []); // The empty array means this runs only once, when the page opens
+    },[]);//The empty array means that this run only once
 
-    function handleAddToCart(item) {
-        // spread operator: a NEW array = all the old items + the new one
-        // (never cart.push(item): React wouldn't notice the change)
-        setCart([...cart, item]);
-    }
+    function handleAddToCart(item){
+        setCart([...cart, item ]);//spread Operator to populate the stateVariable array
+        // cart.push(item)
+        console.log(item);
+    } // CHANGED (Class 1): removed a stray [] that was right after this closing brace
 
-    return (
-        <div>
-            <h1>Catalog</h1>
-            {/* text-secondary = gray text */}
-            <p className="text-secondary">Cart: {cart.length}</p>
-
-            {/* "catalog" = our own class (Catalog.css): cards side by side, wrapping to the next line */}
-            <div className="catalog">
-                {products.map(prod => <Product key={prod._id} data={prod} onAdd={handleAddToCart} />)}
-            </div>
+    return(
+        <div className="catalog">
+            <p>Cart: {cart.length}</p>
+            {products.map(prod => <Product key={prod._id} data={prod} onAdd= {handleAddToCart}/> )}  
+                      {/* for(i=0;i<products;i++)
+                                let prod = products[i] */}
         </div>
     );
 }
-
 export default Catalog;
