@@ -1,0 +1,13 @@
+/* 16rem = 256px wide cards */
+.product {
+    width: 16rem;
+}
+
+/* height: 180px       = all product images the same height
+   object-fit: contain = shrink the image to fit WITHOUT stretching it
+   padding: 1rem       = some space around the image */
+.product img {
+    height: 180px;
+    object-fit: contain;
+    padding: 1rem;
+}

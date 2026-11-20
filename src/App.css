@@ -1,0 +1,13 @@
+/* .app wraps Navbar + main + Footer (see App.jsx).
+   min-height: 100vh = at least the full height of the screen
+   display: flex + flex-direction: column = stack the 3 parts vertically */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* flex: 1 = <main> grows to fill the empty space, which pushes the Footer to the bottom */
+.app main {
+  flex: 1;
+}
